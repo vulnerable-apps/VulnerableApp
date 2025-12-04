@@ -43,6 +43,9 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
 
     int port;
 
+    // Extracted constant to avoid duplicated literal
+    private static final String TEMPLATE_PREFIX = "/VulnerableApp/templates/";
+
     public EndPointsInformationProvider(
             EnvUtils envUtils,
             MessageBundle messageBundle,
@@ -148,7 +151,7 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
                 Arrays.asList(
                         new ResourceURI(
                                 false,
-                                "/VulnerableApp/templates/"
+                                TEMPLATE_PREFIX
                                         + facadeVulnerabilityDefinition.getName()
                                         + "/"
                                         + template
@@ -156,16 +159,17 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
                                 ResourceType.CSS.name()),
                         new ResourceURI(
                                 false,
-                                "/VulnerableApp/templates/"
+                                TEMPLATE_PREFIX
                                         + facadeVulnerabilityDefinition.getName()
                                         + "/"
                                         + template
                                         + ".js",
                                 ResourceType.JAVASCRIPT.name())));
+
         resourceInformation.setHtmlResource(
                 new ResourceURI(
                         false,
-                        "/VulnerableApp/templates/"
+                        TEMPLATE_PREFIX
                                 + facadeVulnerabilityDefinition.getName()
                                 + "/"
                                 + template
@@ -213,8 +217,8 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
                         for (AttackVector attackVector : attackVectors) {
                             List<VulnerabilityType> facadeLevelVulnerabilityTypes =
                                     new ArrayList<VulnerabilityType>();
-                            org.sasanlabs.vulnerability.types.VulnerabilityType[]
-                                    vulnerabilityTypes = attackVector.vulnerabilityExposed();
+                            org.sasanlabs.vulnerability.types.VulnerabilityType[] {
+                            } vulnerabilityTypes = attackVector.vulnerabilityExposed();
                             for (org.sasanlabs.vulnerability.types.VulnerabilityType
                                     vulnerabilityType : vulnerabilityTypes) {
                                 facadeLevelVulnerabilityTypes.add(
